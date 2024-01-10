@@ -1,0 +1,9 @@
+*
+
+!.gitignore
+!schema.prisma
+
+!/migrations
+!/migrations/**
+
+**/.DS_Store

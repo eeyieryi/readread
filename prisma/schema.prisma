@@ -1,0 +1,37 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+model Collection {
+  id          String  @id @default(cuid())
+  title       String
+  description String?
+  url         String?
+
+  entries Entry[]
+
+  @@map("collections")
+}
+
+model Entry {
+  id            String  @id @default(cuid())
+  title         String
+  description   String?
+  url           String?
+  transcription String
+  audiofilename String? @map("audio_filename")
+  seen          Boolean @default(false)
+
+  collectionId String     @map("collection_id")
+  collection   Collection @relation(fields: [collectionId], references: [id], onDelete: Cascade)
+
+  @@map("entries")
+}

@@ -1,0 +1,13 @@
+version: "3.8"
+
+services:
+    app:
+        build:
+            args:
+                - PRISMA_DB_URL="file:../_data/prisma.db"
+            context: .
+        restart: always
+        ports:
+            - "5454:3000"
+        volumes:
+            - "${PWD}/_data:/app/_data"
