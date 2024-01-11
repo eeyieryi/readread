@@ -7,10 +7,13 @@ export const GET: RequestHandler = async (event) => {
 		const file = await readFile(
 			path.join("_data", "audios", event.params.path),
 		);
-		return new Response(file, {
+		return new Response(file.buffer, {
 			status: 200,
 			headers: {
-				"content-type": "audio/mpeg",
+				Connection: "close",
+				"Accept-Ranges": "bytes",
+				"Content-Length": file.byteLength.toString(),
+				"Content-Type": "audio/mpeg",
 			},
 		});
 	} catch {
