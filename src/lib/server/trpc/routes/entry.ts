@@ -86,9 +86,9 @@ const updateOne = t.procedure
 			data: {
 				title: input.title,
 				transcription: input.transcription,
-				audiofilename: input.audiofilename,
-				description: input.description,
-				url: input.url,
+				audiofilename: input.audiofilename ?? undefined,
+				description: input.description ?? undefined,
+				url: input.url ?? undefined,
 				collectionId: input.collectionId,
 				seen: input.seen,
 			},

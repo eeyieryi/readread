@@ -80,8 +80,8 @@ const updateOne = t.procedure
 			},
 			data: {
 				title: input.title,
-				description: input.description,
-				url: input.url,
+				description: input.description ?? undefined,
+				url: input.url ?? undefined,
 			},
 			select: baseSelect,
 		});
